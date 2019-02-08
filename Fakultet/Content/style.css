@@ -1,0 +1,19 @@
+﻿.navbar {
+    background-image: linear-gradient(#222222, #444444);
+}
+
+.navbar a {
+    color: white;
+}
+
+.navbar li a:hover {
+    color: black;
+}
+
+.navbar-brand:hover {
+    color: #bbbbbb;
+}
+
+.predmet {
+    padding-right: 20px;
+}

@@ -1,0 +1,71 @@
+﻿@model Fakultet.Models.Nastavnik
+
+@{
+    ViewBag.Title = "Detalji";
+}
+
+<h2>Detalji</h2>
+
+<div>
+    <h4>Nastavnik</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.JMBG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JMBG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prezime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prezime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumZaposljavanja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatumZaposljavanja)
+        </dd>
+
+        <dt>
+            Predmeti
+        </dt>
+
+        <dd>
+            <div class="col-md-3">
+                <table class="table">
+                    <tr>
+                        <th>Naziv</th>
+                        <th>Cena</th>
+                    </tr>
+                    @foreach (var predmet in Model.Predmeti)
+                    {
+                        <tr>
+                            <th>@predmet.Naziv</th>
+                            <th>@predmet.Cena</th>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Izmeni", "Edit", new { id = Model.JMBG }) |
+    @Html.ActionLink("Nazad", "Index")
+</p>

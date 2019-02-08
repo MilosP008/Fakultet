@@ -1,0 +1,62 @@
+﻿@model PagedList.IPagedList<Fakultet.Models.Student>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Studenti";
+}
+
+<h2>Studenti</h2>
+
+@using (Html.BeginForm("Index", "Student", FormMethod.Get))
+{
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-3">
+                @Html.TextBox("textPretrage", "", htmlAttributes: new { @class = "form-control" })
+            </div>
+            <input type="submit" value="Pretrazi" class="btn btn-success" />
+        </div>
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Napravi novog studenta", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Ime
+        </th>
+        <th>
+            Prezime
+        </th>
+        <th>
+            Godine
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prezime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Godine)
+            </td>
+            <td>
+                @Html.ActionLink("Izmeni", "Edit", new { id = item.JMBG }) |
+                @Html.ActionLink("Detalji", "Details", new { id = item.JMBG }) |
+                @Html.ActionLink("Obrisi", "Delete", new { id = item.JMBG })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+Strana @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) od @Model.PageCount
+@Html.PagedListPager(Model, strana => Url.Action("Index", new { strana }))

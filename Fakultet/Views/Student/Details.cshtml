@@ -1,0 +1,73 @@
+﻿@model Fakultet.Models.Student
+
+@{
+    ViewBag.Title = "Detalji";
+}
+
+<h2>Detalji</h2>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.JMBG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JMBG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prezime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prezime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Godine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Godine)
+        </dd>
+
+        <dt>
+            Predmeti
+        </dt>
+
+        <dd>
+            <div class="col-md-4">
+                <table class="table">
+                    <tr>
+                        <th>Naziv</th>
+                        <th>Cena</th>
+                        <th>Nastavnik</th>
+                    </tr>
+                    @foreach(var predmet in Model.Predmeti)
+                    {
+                        <tr>
+                            <td>@predmet.Naziv</td>
+                            <td>@predmet.Cena</td>
+                            <td>@predmet.Nastavnik.Prezime @predmet.Nastavnik.Ime</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Izmeni", "Edit", new { id = Model.JMBG }) |
+    @Html.ActionLink("Nazad", "Index")
+</p>

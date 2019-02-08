@@ -1,0 +1,62 @@
+﻿@model PagedList.IPagedList<Fakultet.Models.Predmet>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Predmeti";
+}
+
+<h2>Predmeti</h2>
+
+@using (Html.BeginForm("Index", "Predmet", FormMethod.Get))
+{
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-3">
+                @Html.TextBox("textPretrage", "", htmlAttributes: new { @class = "form-control" })
+            </div>
+            <input type="submit" value="Pretrazi" class="btn btn-success" />
+        </div>
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Napravi novi predmet", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Naziv
+        </th>
+        <th>
+            Cena
+        </th>
+        <th>
+            Nastavnik
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naziv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cena)
+            </td>
+            <td>
+                @item.Nastavnik.Prezime @item.Nastavnik.Ime
+            </td>
+            <td>
+                @Html.ActionLink("Izmeni", "Edit", new { id = item.Naziv }) |
+                @Html.ActionLink("Detalji", "Details", new { id = item.Naziv }) |
+                @Html.ActionLink("Obrisi", "Delete", new { id = item.Naziv })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+Strana @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) od @Model.PageCount 
+@Html.PagedListPager(Model, strana => Url.Action("Index", new { strana }))

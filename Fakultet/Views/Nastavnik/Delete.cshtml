@@ -1,0 +1,48 @@
+﻿@model Fakultet.Models.Nastavnik
+
+@{
+    ViewBag.Title = "Obrisi";
+}
+
+<h2>Obrisi</h2>
+
+<h3>Da li ste sigurni da zelite da obrisete ovo?</h3>
+<div>
+    <h4>Nastavnik</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prezime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prezime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumZaposljavanja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatumZaposljavanja)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Obrisi" class="btn btn-danger" /> |
+            @Html.ActionLink("Nazad", "Index")
+        </div>
+    }
+</div>
